@@ -409,15 +409,12 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
               </div>
 
               <div className="space-y-1">
-                <Label className="text-sm">
-                  What would you like the AI to know about you to provide better
-                  responses?
-                </Label>
+                <Label className="text-sm">Profile context</Label>
 
                 <TextareaAutosize
                   value={profileInstructions}
                   onValueChange={setProfileInstructions}
-                  placeholder="Profile context... (optional)"
+                  placeholder="What would you like the AI to know about you to provide better responses? (optional)"
                   minRows={6}
                   maxRows={10}
                 />

@@ -241,12 +241,10 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
               </>
 
               <div className="space-y-1">
-                <Label>
-                  How would you like the AI to respond in this workspace?
-                </Label>
+                <Label>Instructions</Label>
 
                 <TextareaAutosize
-                  placeholder="Instructions... (optional)"
+                  placeholder="How would you like the AI to respond in this workspace? (optional)"
                   value={instructions}
                   onValueChange={setInstructions}
                   minRows={5}
