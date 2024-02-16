@@ -210,37 +210,27 @@ export const AssistantItem: FC<AssistantItemProps> = ({ assistant }) => {
           <div className="space-y-1 pt-2">
             <Label>Files & Collections</Label>
 
+            <div>
+              {(() => {
+                const fileCount = renderState.selectedAssistantFiles.length;
+                const collectionCount = renderState.selectedAssistantCollections.length;
+                let summaryParts = [];
+                if (fileCount > 0) {
+                  summaryParts.push(`${fileCount} file${fileCount > 1 ? 's' : ''}`);
+                }
+                if (collectionCount > 0) {
+                  summaryParts.push(`${collectionCount} collection${collectionCount > 1 ? 's' : ''}`);
+                }
+                return summaryParts.length > 0 ? `${summaryParts.join(', ')} selected` : 'No items selected';
+              })()}
+            </div>
+            
             <AssistantRetrievalSelect
               selectedAssistantRetrievalItems={
                 [
                   ...renderState.selectedAssistantFiles,
                   ...renderState.selectedAssistantCollections
-                ].length === 0
-                  ? [
-                      ...renderState.startingAssistantFiles,
-                      ...renderState.startingAssistantCollections
-                    ]
-                  : [
-                      ...renderState.startingAssistantFiles.filter(
-                        startingFile =>
-                          ![
-                            ...renderState.selectedAssistantFiles,
-                            ...renderState.selectedAssistantCollections
-                          ].some(
-                            selectedFile => selectedFile.id === startingFile.id
-                          )
-                      ),
-                      ...renderState.selectedAssistantFiles.filter(
-                        selectedFile =>
-                          !renderState.startingAssistantFiles.some(
-                            startingFile => startingFile.id === selectedFile.id
-                          )
-                      ),
-                      ...renderState.startingAssistantCollections.filter(
-                        startingCollection =>
-                          ![
-                            ...renderState.selectedAssistantFiles,
-                            ...renderState.selectedAssistantCollections
+                ]
                           ].some(
                             selectedCollection =>
                               selectedCollection.id === startingCollection.id
