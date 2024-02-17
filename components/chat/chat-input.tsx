@@ -12,7 +12,7 @@ import Image from "next/image"
 import { FC, useContext, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Input } from "../ui/input"
-import { TextareaAutosize } from "../ui/textarea-autosize"
+import { CopilotTextarea } from "@copilotkit/copilotkit"
 import { ChatCommandInput } from "./chat-command-input"
 import { ChatFilesDisplay } from "./chat-files-display"
 import { useChatHandler } from "./chat-hooks/use-chat-handler"
@@ -230,16 +230,15 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
           />
         </>
 
-        <TextareaAutosize
-          textareaRef={chatInputRef}
+        <CopilotTextarea
+          ref={chatInputRef}
           className="ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring text-md flex w-full resize-none rounded-md border-none bg-transparent px-14 py-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           placeholder={t(
             `Ask anything. Type "@" for assistants, "/" for prompts, "#" for files, and "!" for tools.`
           )}
-          onValueChange={handleInputChange}
+          onChange={handleInputChange}
           value={userInput}
-          minRows={1}
-          maxRows={18}
+          context={chatMessages.map(msg => msg.content).join('\n')}
           onKeyDown={handleKeyDown}
           onPaste={handlePaste}
           onCompositionStart={() => setIsTyping(true)}
