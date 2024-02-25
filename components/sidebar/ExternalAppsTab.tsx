@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
-import { ExternalAppsContext } from '@/context/ExternalAppsContext';
+import { useState, useEffect } from 'react';
 
 const ExternalAppsTab = () => {
-  const { externalApps } = useContext(ExternalAppsContext);
   const [appsList, setAppsList] = useState([]);
 
   useEffect(() => {
-    setAppsList(externalApps);
+    fetch('/config/externalAppsConfig.json')
+      .then((response) => response.json())
+      .then((data) => setAppsList(data.externalApps));
   }, [externalApps]);
 
   const handleAppClick = (app) => {
