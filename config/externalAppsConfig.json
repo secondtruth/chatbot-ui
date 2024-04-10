@@ -1,0 +1,24 @@
+{
+  "externalApps": [
+    {
+      "name": "Google",
+      "url": "https://www.google.com",
+      "embed": false
+    },
+    {
+      "name": "Wikipedia",
+      "url": "https://www.wikipedia.org",
+      "embed": true
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com",
+      "embed": true
+    },
+    {
+      "name": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "embed": false
+    }
+  ]
+}
